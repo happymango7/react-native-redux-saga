@@ -1,0 +1,35 @@
+{
+  "name": "UpperNetwork",
+  "version": "1.0.0",
+  "dependencies": {
+    "lodash": "^4.12.0",
+    "native-base": "^2.4.5",
+    "normalizr": "^3.2.4",
+    "react": "16.4.0",
+    "react-native": "^0.55.4",
+    "react-native-button": "^2.3.0",
+    "react-native-gifted-spinner": "0.1.0",
+    "react-native-navbar": "^2.1.0",
+    "react-native-router-flux": "^4.0.0-beta.31",
+    "react-native-vector-icons": "^4.6.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.0",
+    "redux-storage": "^4.0.0",
+    "redux-storage-engine-reactnativeasyncstorage": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-preset-react-native": "4.0.0",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react-native": "^3.2.1",
+    "remote-redux-devtools": "^0.5.12",
+    "remote-redux-devtools-on-debugger": "^0.8.3"
+  },
+  "scripts": {
+    "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/UpperNetwork/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "postinstall": "remotedev-debugger"
+  }
+}
