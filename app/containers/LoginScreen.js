@@ -46,6 +46,7 @@ class LoginScreen extends Component {
             <Item regular>
               <Input
                 placeholder="Password"
+                secureTextEntry={true}
                 onChangeText={password => this.setState({password})}
                 value={password}
               />
