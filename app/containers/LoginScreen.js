@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-// import {View, StyleSheet, TouchableHighlight, TextInput} from 'react-native';
-// import NavigationBar from 'react-native-navbar';
-// import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Content, Button, Text, Item, Input, H1, Body} from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,8 +7,8 @@ import { Actions } from 'react-native-router-flux';
 
 class LoginScreen extends Component {
   state = {
-    email: 'user@gmail.com',
-    password: 'user',
+    email: 'bond@007.com',
+    password: 'asdfasdf1',
   };
 
   loginEmail = () => {
@@ -28,8 +25,7 @@ class LoginScreen extends Component {
     const { user } = this.props;
 
     let error;
-    if (user.errorMessage !== '') {
-      // console.log('user', user, user.errorMessage);
+    if (user.errorMessage) {
       error = <Text style={{backgroundColor: 'red'}}>{user.errorMessage}</Text>;
     }
 

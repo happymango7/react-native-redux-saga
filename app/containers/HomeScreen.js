@@ -1,74 +1,45 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
+import {
+  Container,
+  Header,
+  Left,
+  Body,
+  Right,
+  Content,
+  Button,
+  Text,
+  Item,
+  Input,
+  H1,
+  Title
+} from 'native-base';
 import { connect } from 'react-redux';
 import { increment, decrement } from '../actions/counterActions';
 import { Actions } from 'react-native-router-flux';
 import { logout } from '../actions/loginActions';
 import NavigationBar from 'react-native-navbar';
-import Icon from 'react-native-vector-icons/FontAwesome'
 
 class HomeScreen extends Component {
   render() {
-    const { counter, user } = this.props;
-
-    const titleConfig = {
-      title: 'Home',
-      tintColor: 'black',
-    };
-
-    const logoutButtonConfig = {
-      title: 'Logout',
-      handler: () =>  {
-        this.props.logout();
-        Actions.pop();
-      }
-    };
-
+    const { user } = this.props;
     return (
-      <View style={styles.container}>
-        <NavigationBar
-          title={titleConfig}
-          tintColor="#ADF8D1"
-          rightButton={logoutButtonConfig}
-        />
-        <Text>{JSON.stringify(user)}</Text>
-        <View style={styles.center}>
-          <Text>Counter: {counter}</Text>
-          <Icon.Button
-            name="plus"
-            onPress={this.props.increment} />
-          <Icon.Button
-            name="minus"
-            background="red"
-            onPress={this.props.decrement} />
-        </View>
-      </View>
+      <Container>
+        <Header>
+          <Right>
+            <Button transparent onPress={this.props.logout}>
+              <Text>Log Out</Text>
+            </Button>
+          </Right>
+        </Header>
+        <Content paddr>
+          <Body style={{padding: 20}}>
+            <H1 block>{`Welcome ${user.userName}`}</H1>
+          </Body>
+        </Content>
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    //flexDirection: 'row'
-  },
-
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  input: {
-    alignSelf: 'center',
-    height: 40,
-    width: 200,
-    borderColor: 'gray',
-    borderWidth: 1
-  }
-});
 
 function mapStateToProps(state) {
   const { counter, user } = state;

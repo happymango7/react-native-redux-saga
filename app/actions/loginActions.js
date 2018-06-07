@@ -8,11 +8,10 @@ export function loginRequest(email, password) {
   }
 }
 
-export function loginSuccess({token, user}) {
+export function loginSuccess(payload) {
   return {
     type: types.LOGIN.SUCCESS,
-    token,
-    user,
+    ...payload
   }
 }
 

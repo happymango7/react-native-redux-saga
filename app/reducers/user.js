@@ -3,9 +3,10 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   isAuthenticated: false,
   isFetching: false,
-  token: '',
-  user: {},
-  errorMessage: '',
+  access_token: '',
+  token_type: '',
+  expires_in: 0,
+  userName: ''
 };
 
 export default function user(state = initialState, action) {
@@ -19,9 +20,9 @@ export default function user(state = initialState, action) {
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
-        token: action.token,
         failure: false,
-        user: action.user,
+        access_token: action.access_token,
+        userName: action.userName,
       });
     case types.LOGIN.FAILURE:
       return Object.assign({}, state, {

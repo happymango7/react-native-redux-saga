@@ -1,26 +1,30 @@
 import React from 'react';
 import { take, put, call, fork, select } from 'redux-saga/effects'
 import * as types from '../actions/actionTypes';
+import config from '../config';
 import { loginSuccess, loginFailure } from '../actions/loginActions'
-
-const loginData = {
-  token: 'my secret token',
-  user: {
-    name: 'feitico',
-    email: 'user@gmail.com',
-  },
-};
-
 
 function loginCall({email, password}) {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (email == 'user@gmail.com') {
-        resolve(loginData);
-      } else {
+    fetch(`${config.url}/token`, {
+      credentials: 'include',
+      method: 'post',
+      headers: config.formHeaders,
+      body: `grant_type=password&username=${email}&password=${password}`
+    })
+      .then(response => response.json())
+      .then((userData) => {
+        console.log(userData)
+        if(userData.error) {
+          reject({status: userData.error_description || userData.error});
+        }
+        else {
+          resolve(userData);
+        }
+      })
+      .catch(error => {
         reject({status: 'wrong email or password'});
-      }
-    }, 1000); // 1 second
+      });
   })
 }
 
